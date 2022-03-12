@@ -22,8 +22,8 @@ public class Schedule {
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
-    @Column(name = "room_type_code", columnDefinition = "date comment '숙소 유형 코드'")
-    private LocalDate schedule_date;
+    @Column(name = "schedule_date", columnDefinition = "date comment '숙소 유형 코드'")
+    private LocalDate scheduleDate;
 
     @Column(name = "price", columnDefinition = "int comment '금액'")
     private Long price;

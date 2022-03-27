@@ -24,12 +24,24 @@ public class Room {
     private String id;
 
     // member 호스트 id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
     // room_sub_type 숙소 서브 유형 id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_sub_type_id", nullable = false)
+    private RoomSubType roomSubType;
 
     // room_type_code 숙소 유형
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_type_id", nullable = false)
+    private RoomType roomType;
 
-    // room_area_type 숙소 종류 id
+    // room_privacy_type 숙소 종류 id
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "room_private_type_id", nullable = false)
+    private RoomPrivacyType roomPrivacyType;
 
     @Column(name = "name", columnDefinition = "VARCHAR(256) comment '숙소명'")
     private String name;

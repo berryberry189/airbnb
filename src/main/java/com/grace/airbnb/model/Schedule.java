@@ -40,6 +40,4 @@ public class Schedule {
     @Column(name = "secret_memo", columnDefinition = "text comment '비공개 메모'")
     private String secretMemo;
 
-
-
 }

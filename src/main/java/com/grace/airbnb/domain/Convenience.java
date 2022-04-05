@@ -1,4 +1,4 @@
-package com.grace.airbnb.model;
+package com.grace.airbnb.domain;
 
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,21 +11,25 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "room_type")
+@Table(name = "convenience")
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public class RoomType {
+public class Convenience {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_type_id", columnDefinition = "bigint(20) comment '숙소 유형 id'")
+    @Column(name = "convenience_type_id", columnDefinition = "bigint(20) comment '편의시설 타입 id'")
     private String id;
 
-    @Column(name = "room_type_code", columnDefinition = "VARCHAR(256) comment '숙소 유형 코드'")
-    private String roomTypeCode;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "convenience_type_id", nullable = false)
+    private ConvenienceType convenienceType;
 
-    @Column(name = "room_type_name", columnDefinition = "VARCHAR(500) comment '숙소 유형명'")
-    private String roomTypeName;
+    @Column(name = "convenience_name", columnDefinition = "VARCHAR(256) comment '편의시설 명'")
+    private String convenienceName;
+
+    @Column(name = "emoticon", columnDefinition = "VARCHAR(256) comment '이모티콘'")
+    private String emoticon;
 
     @Column(name = "create_at", nullable = false, updatable = false, columnDefinition = "datetime comment '등록일'")
     @CreationTimestamp

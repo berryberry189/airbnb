@@ -1,4 +1,4 @@
-package com.grace.airbnb.model;
+package com.grace.airbnb.domain;
 
 import java.time.LocalDateTime;
 import javax.persistence.Column;

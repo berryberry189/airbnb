@@ -1,4 +1,4 @@
-package com.grace.airbnb.model;
+package com.grace.airbnb.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

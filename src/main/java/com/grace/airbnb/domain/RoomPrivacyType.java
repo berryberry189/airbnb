@@ -1,4 +1,4 @@
-package com.grace.airbnb.model;
+package com.grace.airbnb.domain;
 
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;

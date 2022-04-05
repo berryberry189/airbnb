@@ -1,4 +1,4 @@
-package com.grace.airbnb.model;
+package com.grace.airbnb.domain;
 
 import com.grace.airbnb.util.BooleanToYNConverter;
 import lombok.Getter;

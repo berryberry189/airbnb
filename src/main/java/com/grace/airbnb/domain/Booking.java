@@ -1,4 +1,4 @@
-package com.grace.airbnb.model;
+package com.grace.airbnb.domain;
 
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,21 +8,36 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "convenience_type")
+@Table(name = "booking")
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public class ConvenienceType {
+public class Booking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "convenience_type_id", columnDefinition = "bigint(20) comment '편의시설 타입 id'")
+    @Column(name = "booking_id", columnDefinition = "bigint(20) comment '숙소 종류 id'")
     private String id;
 
-    @Column(name = "convenience_type_name", columnDefinition = "VARCHAR(256) comment '편의시설 타입 명'")
-    private String convenienceTypeName;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id", nullable = false)
+    private Schedule schedule;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "orders_id", nullable = false)
+    private Orders orders;
+
+    @Column(name = "amount", columnDefinition = "int comment '1일 결제 금액'")
+    private Long amount;
+
+    @Column(name = "booking_date", columnDefinition = "date comment '예약 날짜'")
+    private LocalDate bookingDate;
+
+    @Column(name = "cancel_date", columnDefinition = "date comment '취소날짜'")
+    private LocalDate cancelDate;
 
     @Column(name = "create_at", nullable = false, updatable = false, columnDefinition = "datetime comment '등록일'")
     @CreationTimestamp
@@ -39,4 +54,5 @@ public class ConvenienceType {
     @LastModifiedBy
     @Column(name = "update_id", columnDefinition = "bigint comment '수정직원 ID'")
     protected Long modifyBy;
+
 }

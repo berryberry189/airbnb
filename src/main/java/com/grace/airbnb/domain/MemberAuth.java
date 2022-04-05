@@ -1,4 +1,4 @@
-package com.grace.airbnb.model;
+package com.grace.airbnb.domain;
 
 import lombok.Getter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -8,23 +8,23 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "room_convenience")
+@Table(name = "member_auth")
 @Getter
 @EntityListeners(AuditingEntityListener.class)
-public class RoomConvenience {
+public class MemberAuth {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "room_convenience_id", columnDefinition = "bigint(20) comment '숙소 편의시설 id'")
+    @Column(name = "member_auth_id", columnDefinition = "bigint(20) comment '회원 권한 id'")
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "room_id", nullable = false)
-    private Room room;
+    @JoinColumn(name = "member_id", nullable = false)
+    private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "convenience_id", nullable = false)
-    private Convenience convenience;
+    // common code
+    @Column(name = "auth_code", columnDefinition = "VARCHAR(256) comment '권한 코드'")
+    private String authCode;
 
     @Column(name = "create_at", nullable = false, updatable = false, columnDefinition = "datetime comment '등록일'")
     @CreationTimestamp
